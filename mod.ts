@@ -1,4 +1,4 @@
-const config = `
+const defaultConfig = `
 [general]
 bars = 30
 [output]
@@ -6,7 +6,7 @@ method = raw
 raw_target = /dev/stdout
 bit_format = 16bit`
 
-async function* streamLines() {
+export async function* streamLines(config = defaultConfig) {
     const tempConfig = await Deno.makeTempFile({ prefix: "cava-config", suffix: ".ini" })
 
     await Deno.writeTextFile(tempConfig, config)
