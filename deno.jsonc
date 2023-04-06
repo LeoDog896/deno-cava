@@ -1,6 +1,6 @@
 {
-    "tasks": {
-        "example:display": "deno run --allow-write=/tmp --allow-run=cava examples/display.ts",
-        "example:numeral": "deno run --allow-write=/tmp --allow-run=cava examples/numeral.ts"
-    }
+  "tasks": {
+    "example:display": "deno run --allow-write=/tmp --allow-run=cava examples/display.ts",
+    "example:numeral": "deno run --allow-write=/tmp --allow-run=cava examples/numeral.ts"
+  }
 }
