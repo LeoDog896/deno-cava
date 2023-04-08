@@ -2,12 +2,10 @@ import { streamLines } from "../mod.ts";
 
 function percentageToBar(
   percent: number,
-  height = Deno.consoleSize().rows,
+  width = Math.floor(2 * Deno.consoleSize().columns / 3),
 ): string {
   const bar = "▏▎▍▌▋▊▉█";
-
-  // find percentage of height
-  const amount = height * (percent / 100);
+  const amount = width * (percent / 100);
 
   // amount % 1 = the remainder of the division
   const topBar = bar[Math.floor(amount % 1 * (bar.length - 1))];
@@ -23,7 +21,7 @@ for await (const line of streamLines()) {
 
   const percentage = arr.map((n) => max === 0 ? 0 : Math.round(n / max * 100));
 
-  const data = percentage.map(percentageToBar);
+  const data = percentage.map((x) => percentageToBar(x));
 
   console.clear();
   console.log(data.join("\n"));

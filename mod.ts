@@ -5,14 +5,17 @@ interface Config {
 export function toConfig(config?: Partial<Config>): string {
   return `[general]
 bars = ${config?.bars ?? 30}
+
 [output]
 method = raw
 raw_target = /dev/stdout
-bit_format = 16bit`.trim();
-
+bit_format = 16bit
+`.trim();
 }
 
-export async function* streamLines(config = toConfig()) {
+export async function* streamLines(
+  config = toConfig(),
+): AsyncGenerator<Uint16Array, void, void> {
   const tempConfig = await Deno.makeTempFile({
     prefix: "cava-config",
     suffix: ".ini",
